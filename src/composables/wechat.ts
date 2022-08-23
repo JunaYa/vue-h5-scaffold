@@ -9,31 +9,33 @@ interface ShareInfo {
   imgUrl: string // 分享图标
 }
 
-export function isWeixinJSBridgeReady(ready: Function) {
-  if (!window.WeixinJSBridge || !window.WeixinJSBridge.invoke)
-    document.addEventListener('WeixinJSBridgeReady', ready, false)
-
-  else
-    ready()
+interface ShareTimelineInfo {
+  title: string // 分享标题
+  link: string // 分享链接，该链接域名或路径必须与当前页面对应的公众号 JS 安全域名一致
+  imgUrl: string // 分享图标
 }
 
-export function register() {
+export function isWeixinJSBridgeReady(ready: any) {
+  if (!WeixinJSBridge || !WeixinJSBridge.invoke) {
+    if (document.addEventListener)
+      document.addEventListener('WeixinJSBridgeReady', ready, false)
+
+    else
+      ready()
+  }
+}
+
+export function registerWeixinJS() {
   useScriptTag(
     'http://res2.wx.qq.com/open/js/jweixin-1.6.0.js',
     // on script tag loaded.
-    (el: HTMLScriptElement) => {
-    // do something
-      wx.ready(() => {
-        // config信息验证后会执行 ready 方法，所有接口调用都必须在 config 接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在 ready 函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在 ready 函数中。
-      })
-
-      wx.error((res) => {
-        // config信息验证失败会执行 error 函数，如签名过期导致验证失败，具体错误信息可以打开 config 的debug模式查看，也可以在返回的 res 参数中查看，对于 SPA 可以在这里更新签名。
-      })
+    () => {
+      wxconfig()
 
       wx.checkJsApi({
-        jsApiList: ['chooseImage'], // 需要检测的 JS 接口列表，所有 JS 接口列表见附录2,
-        success(res) {
+        jsApiList: ['checkJsApi', 'onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'hideAllNonBaseMenuItem', 'chooseImage', 'uploadImage', 'getLocalImgData', 'previewImage'], // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+        success(res: any) {
+          console.log(res)
           // 以键值对的形式返回，可用的 api 值true，不可用为false
           // 如：{"checkResult":{"chooseImage":true},"errMsg":"checkJsApi:ok"}
         },
@@ -42,7 +44,7 @@ export function register() {
   )
 }
 
-export function wxconfig() {
+function wxconfig() {
   getSignature().then((res: Signature) => {
     wx.config({
       debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，
@@ -53,37 +55,70 @@ export function wxconfig() {
       signature: res.signature, // 必填，签名，见附录1
       jsApiList: ['checkJsApi', 'onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'hideAllNonBaseMenuItem', 'chooseImage', 'uploadImage', 'getLocalImgData', 'previewImage'], // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
     })
+    wx.ready(() => {
+      // config信息验证后会执行 ready 方法，所有接口调用都必须在 config 接口获得结果之后
+      // config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口
+      // 则须把相关接口放在 ready 函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在 ready 函数中。
+    })
+
     // 增加错误监听
-    wx.error((_err) => {
+    wx.error((_err: any) => {
       // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+      console.log(_err)
     })
   })
 }
 
-export function shareFriend(info: ShareInfo) {
+/**
+ * 微信分享好友
+ * @param info ShareInfo
+ * @returns null
+ */
+export function shareFriend(info: ShareInfo): Promise<any> {
   if (!wx)
-    return
+    return Promise.reject(new Error('wx invoke error'))
 
-  wx.ready(() => { // 需在用户可能点击分享按钮前就先调用
-    wx.updateAppMessageShareData({
-      ...info,
-      success() {
-        // 设置成功
-      },
+  return new Promise((resolve) => {
+    wx.ready(() => { // 需在用户可能点击分享按钮前就先调用
+      wx.updateAppMessageShareData({
+        ...info,
+        success(res: any) {
+          resolve(res)
+        },
+        cancel() {
+          reject('shareTimeline cancel!')
+        },
+        fail(err: any) {
+          reject(new Error(err))
+        },
+      })
     })
   })
 }
 
-export function shareTimeline(info: ShareInfo) {
+/**
+ * 微信分享朋友圈
+ * @param info ShareTimelineInfo
+ * @returns Promise
+ */
+export function shareTimeline(info: ShareTimelineInfo): Promise<any> {
   if (!wx)
-    return
+    return Promise.reject(new Error('wx invoke error'))
 
-  wx.ready(() => { // 需在用户可能点击分享按钮前就先调用
-    wx.updateAppMessageShareData({
-      ...info,
-      success() {
-        // 设置成功
-      },
+  return new Promise((resolve, reject) => {
+    wx.ready(() => { // 需在用户可能点击分享按钮前就先调用
+      wx.updateTimelineShareData({
+        ...info,
+        success(res: any) {
+          resolve(res)
+        },
+        cancel() {
+          reject(new Error('shareTimeline cancel!'))
+        },
+        fail(err: any) {
+          reject(new Error(err))
+        },
+      })
     })
   })
 }
