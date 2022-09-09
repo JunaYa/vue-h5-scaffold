@@ -23,7 +23,7 @@
     "vue-router": "^4.1.2"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.25.2",
+    "@junaya/eslint-config": "^0.25.2",
     "@iconify-json/carbon": "^1.1.6",
     "@intlify/vite-plugin-vue-i18n": "^3.3.1",
     "@types/canvas-confetti": "^1.4.3",
@@ -60,6 +60,6 @@
     "vue-tsc": "^0.38.8"
   },
   "eslintConfig": {
-    "extends": "@antfu"
+    "extends": "@junaya"
   }
 }
