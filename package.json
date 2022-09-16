@@ -23,9 +23,9 @@
     "vue-router": "^4.1.2"
   },
   "devDependencies": {
-    "@junaya/eslint-config": "^0.25.2",
     "@iconify-json/carbon": "^1.1.6",
     "@intlify/vite-plugin-vue-i18n": "^3.3.1",
+    "@junaya/eslint-config": "^0.1.22",
     "@types/canvas-confetti": "^1.4.3",
     "@types/markdown-it-link-attributes": "^3.0.1",
     "@types/node": "^18.0.6",
@@ -36,7 +36,7 @@
     "axios": "^0.27.2",
     "canvas-confetti": "^1.5.1",
     "cypress": "^10.3.1",
-    "eslint": "^8.20.0",
+    "eslint": "^8.23.0",
     "eslint-plugin-cypress": "^2.12.1",
     "jsdom": "^20.0.0",
     "markdown-it-link-attributes": "^4.0.0",
