@@ -45,7 +45,6 @@ instance.interceptors.request.use(
     }
   },
   (error) => {
-    console.log(error) // for debug
     return Promise.reject(error)
   },
 )

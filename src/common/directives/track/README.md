@@ -9,7 +9,6 @@
 ```vue
 <div v-track.stop="'event_name'" stats-user_id="003" stats-user_name="我呀" />
 
-
 事件类型装饰器
 默认 tap，
 其他

@@ -2,7 +2,6 @@
  * 页面放回按钮
  */
 export const onBack = () => {
-  console.log('back', '')
   // cocos 交互方法
   // v 固定值
   // type 学科类型 writing、science

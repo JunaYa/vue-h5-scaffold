@@ -35,7 +35,6 @@ export function registerWeixinJS() {
       wx.checkJsApi({
         jsApiList: ['checkJsApi', 'onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'hideAllNonBaseMenuItem', 'chooseImage', 'uploadImage', 'getLocalImgData', 'previewImage'], // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
         success(res: any) {
-          console.log(res)
           // 以键值对的形式返回，可用的 api 值true，不可用为false
           // 如：{"checkResult":{"chooseImage":true},"errMsg":"checkJsApi:ok"}
         },
@@ -64,7 +63,6 @@ function wxconfig() {
     // 增加错误监听
     wx.error((_err: any) => {
       // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
-      console.log(_err)
     })
   })
 }
