@@ -1,7 +1,7 @@
-import ajax from '../ajax'
-import type { Signature } from '~/@types/wechat'
-const isProduction = import.meta.env.PROD
-const domain = isProduction ? 'https://m.hetao101.com/fe-wx-pub/' : 'https://m.testing.hetao101.com/fe-wx-pub/'
+import ajax from "../ajax";
+import type { Signature } from "~/@types/wechat";
+const isProduction = import.meta.env.PROD;
+const domain = isProduction ? "production api url" : "test api url";
 /**
  * 获取微信签名
  * @param query
@@ -9,9 +9,9 @@ const domain = isProduction ? 'https://m.hetao101.com/fe-wx-pub/' : 'https://m.t
 export function getSignature(): Promise<Signature> {
   const config = {
     headers: {
-      'Share-Referer': domain,
+      "Share-Referer": domain,
     },
-  }
+  };
 
-  return ajax.get(`${domain}/logic/v1/wechat/signature`, config)
+  return ajax.get(`${domain}/logic/v1/wechat/signature`, config);
 }

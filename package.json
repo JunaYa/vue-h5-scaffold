@@ -3,8 +3,9 @@
   "packageManager": "pnpm@7.6.0",
   "scripts": {
     "dev": "vite --port 3333 --open",
-    "dev:stg": "vite --port 3333 --open --mode staging",
-    "dev:prd": "vite --port 3333 --open --mode production",
+    "start:dev": "vite --port 3333 --open --mode development",
+    "start:stg": "vite --port 3333 --open --mode staging",
+    "start:prd": "vite --port 3333 --open --mode production",
     "build": "vite build --mode production",
     "build:dev": "vite build --mode development",
     "build:stg": "vite build --mode staging",
