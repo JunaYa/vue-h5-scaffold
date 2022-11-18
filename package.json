@@ -75,7 +75,7 @@
     "commit-msg": "pnpm exec tsx scripts/verifyCommit.ts $1"
   },
   "lint-staged": {
-    "*.{.vue}": [
+    "*..vue": [
       "vue-tsc --noEmit"
     ],
     "*.{ts,tsx}": [
