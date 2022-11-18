@@ -1,10 +1,34 @@
 [build.environment]
+  NODE_OPTIONS = "--max_old_space_size=4096"
   NPM_FLAGS = "--version"
   NODE_VERSION = "16"
 
 [build]
   publish = "dist"
   command = "npx pnpm i --store=node_modules/.pnpm-store && npx pnpm run build"
+
+[[redirects]]
+  from = "/apiDevelopment/*"
+  to = "http://dev.api.junaya.app/api/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/apiStaging/*"
+  to = "http://stg.api.junaya.app:8000/api/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/apiProduction/*"
+  to = "http://api.junaya.app/api/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
 
 [[redirects]]
   from = "/*"
