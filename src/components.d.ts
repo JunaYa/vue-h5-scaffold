@@ -9,6 +9,8 @@ declare module '@vue/runtime-core' {
     Confetti: typeof import('./components/Confetti.vue')['default']
     Counter: typeof import('./components/Counter.vue')['default']
     Footer: typeof import('./components/Footer.vue')['default']
+    MobileFooter: typeof import('./components/common/mobileFooter.vue')['default']
+    Nav: typeof import('./components/common/nav.vue')['default']
     PageLoading: typeof import('./components/PageLoading.vue')['default']
     README: typeof import('./components/README.md')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
