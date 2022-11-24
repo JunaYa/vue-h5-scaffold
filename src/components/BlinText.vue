@@ -4,39 +4,39 @@ const props = defineProps({
     type: String,
     default: 'rgb(103, 58, 183)',
   },
-})
-let index = 0
-const interval = 1000
-const starRef = ref([])
+});
+let index = 0;
+const interval = 1000;
+const starRef = ref([]);
 
 const rand = (min: number, max: number) =>
-  Math.floor(Math.random() * (max - min + 1)) + min
+  Math.floor(Math.random() * (max - min + 1)) + min;
 
 const animate = (star: HTMLElement) => {
-  star.style.setProperty('--star-left', `${rand(-10, 100)}%`)
-  star.style.setProperty('--star-top', `${rand(-40, 80)}%`)
+  star.style.setProperty('--star-left', `${rand(-10, 100)}%`);
+  star.style.setProperty('--star-top', `${rand(-40, 80)}%`);
 
-  star.style.animation = 'none'
+  star.style.animation = 'none';
   // eslint-disable-next-line no-unused-expressions
-  star.offsetHeight
-  star.style.animation = ''
-}
+  star.offsetHeight;
+  star.style.animation = '';
+};
 
 const run = () => {
   if (starRef.value.length) {
     for (const star of starRef.value) {
       setTimeout(() => {
-        animate(star)
+        animate(star);
 
-        setInterval(() => animate(star), 1000)
-      }, index++ * (interval / 5))
+        setInterval(() => animate(star), 1000);
+      }, index++ * (interval / 5));
     }
   }
-}
+};
 
 onMounted(() => {
-  run()
-})
+  run();
+});
 </script>
 
 <template>

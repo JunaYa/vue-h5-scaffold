@@ -72,9 +72,6 @@
     "vitest": "^0.16.0",
     "vue-tsc": "^0.38.9"
   },
-  "eslintConfig": {
-    "extends": "@junaya"
-  },
   "simple-git-hooks": {
     "pre-commit": "pnpm exec lint-staged --concurrent false",
     "commit-msg": "pnpm exec tsx scripts/verifyCommit.ts $1"
@@ -93,5 +90,8 @@
     "*.md": [
       "prettier --write"
     ]
+  },
+  "eslintConfig": {
+    "extends": "@junaya"
   }
 }

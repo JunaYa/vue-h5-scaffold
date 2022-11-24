@@ -15,25 +15,30 @@ chore: 建构程序或辅助工具的变动 (maintain)。
 wip：移除文件或者代码
 revert: 撤销回覆先前的 commit 例如：revert: type(scope): subject (回覆版本：xxxx)
  */
-import { readFileSync } from 'node:fs'
-import colors from 'picocolors' // eslint-disable-line import/no-extraneous-dependencies
+import { readFileSync } from "node:fs";
+import colors from "picocolors";
 
 // get $1 from commit-msg script
-const msgPath = process.argv[2]
-const msg = readFileSync(msgPath, 'utf-8').trim()
+const msgPath = process.argv[2];
+const msg = readFileSync(msgPath, "utf-8").trim();
 
-const releaseRE = /^v\d/
-const commitRE = /^(revert: )?(feat|fix|docs|style|refactor|perf|test|ci|chore|wip|revert)(\(.+\))?(.{1,10})?: .{1,50}/
+const releaseRE = /^v\d/;
+const commitRE =
+  /^(revert: )?(feat|fix|docs|style|refactor|perf|test|ci|chore|wip|revert)(\(.+\))?(.{1,10})?: .{1,50}/;
 
 if (!releaseRE.test(msg) && !commitRE.test(msg)) {
-  console.log() // eslint-disable-line no-console
+  console.log();
   console.error(
-    `  ${colors.bgRed(colors.white(' ERROR '))} ${colors.red(`invalid commit message format.`)}\n\n${colors.red(
-      `  Proper commit message format is required for automated changelog generation. Examples:\n\n`,
-    )}    ${colors.green(`feat: add 'comments' option`)}\n` +
-      `    ${colors.green(`fix: handle events on blur (close #28)`)}\n\n${colors.red(
-        `  See https://www.notion.so/seedao/commit-b43f69985db345e58c52c147d32610cf for more details.\n`,
-      )}`,
-  ) // eslint-disable-line no-console
-  process.exit(1)
+    `  ${colors.bgRed(colors.white(" ERROR "))} ${colors.red(
+      "invalid commit message format."
+    )}\n\n${colors.red(
+      "  Proper commit message format is required for automated changelog generation. Examples:\n\n"
+    )}    ${colors.green("feat: add 'comments' option")}\n` +
+      `    ${colors.green(
+        "fix: handle events on blur (close #28)"
+      )}\n\n${colors.red(
+        "  See https://www.notion.so/seedao/commit-b43f69985db345e58c52c147d32610cf for more details.\n"
+      )}`
+  );
+  process.exit(1);
 }

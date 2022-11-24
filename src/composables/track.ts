@@ -1,3 +1,4 @@
-export const track = (name: string, data: Record<string, any>) => {
+// name: string, data: Record<string, any>
+export const track = () => {
   // TODO 埋点
-}
+};

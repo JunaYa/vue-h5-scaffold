@@ -4,7 +4,7 @@ const props = defineProps<{
   right?: Boolean
   bottom?: Boolean
   left?: Boolean
-}>()
+}>();
 </script>
 
 <template>

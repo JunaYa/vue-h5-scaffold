@@ -97,6 +97,7 @@ function handleCustomHeaders(
   for (const key in headers) {
     if (!defaultHeaders.includes(key)) newHeaders[key] = headers[key];
   }
+
   return newHeaders;
 }
 export default instance;

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import confetti from 'canvas-confetti'
+import confetti from 'canvas-confetti';
 
 function congrats() {
   const defaults = {
@@ -12,13 +12,13 @@ function congrats() {
     ],
     shapes: ['square'],
     ticks: 500,
-  } as confetti.Options
+  } as confetti.Options;
   confetti({
     ...defaults,
     particleCount: 80,
     spread: 100,
     origin: { y: 0 },
-  })
+  });
   setTimeout(() => {
     confetti({
       ...defaults,
@@ -26,8 +26,8 @@ function congrats() {
       angle: 60,
       spread: 80,
       origin: { x: 0 },
-    })
-  }, 250)
+    });
+  }, 250);
   setTimeout(() => {
     confetti({
       ...defaults,
@@ -35,13 +35,13 @@ function congrats() {
       angle: 120,
       spread: 80,
       origin: { x: 1 },
-    })
-  }, 400)
+    });
+  }, 400);
 }
 
 onMounted(() => {
-  setTimeout(congrats, 300)
-})
+  setTimeout(congrats, 300);
+});
 </script>
 
 <template>
