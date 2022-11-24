@@ -160,6 +160,10 @@ export default defineConfig({
     Legacy(),
   ],
 
+  build: {
+    minify: "terser",
+  },
+
   // https://github.com/vitest-dev/vitest
   test: {
     include: ["test/unit/**/*.test.ts"],
