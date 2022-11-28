@@ -25,5 +25,6 @@
       "~/*": ["src/*"]
     }
   },
-  "exclude": ["dist", "node_modules"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "tests/**/*.ts", "tests/**/*.tsx", "tests/**/*.vue"],
+  "exclude": ["dist", "node_modules", "playwright-report"]
 }

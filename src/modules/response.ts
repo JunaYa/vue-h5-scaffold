@@ -1,4 +1,5 @@
 import { type UserModule } from "~/types";
+const WeixinJSBridge = window.WeixinJSBridge;
 
 export const install: UserModule = () => {
   // rem布局，body:font-size初始化
