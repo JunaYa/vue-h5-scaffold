@@ -34,11 +34,7 @@ if (!releaseRE.test(msg) && !commitRE.test(msg)) {
     )}\n\n${colors.red(
       "  Proper commit message format is required for automated changelog generation. Examples:\n\n"
     )}    ${colors.green("feat: add 'comments' option")}\n` +
-      `    ${colors.green(
-        "fix: handle events on blur (close #28)"
-      )}\n\n${colors.red(
-        "  See https://www.notion.so/seedao/commit-b43f69985db345e58c52c147d32610cf for more details.\n"
-      )}`
+      `    ${colors.green("fix: handle events on blur (close #28)")}`
   );
   process.exit(1);
 }
