@@ -49,7 +49,6 @@ specifiers:
   vite-ssg-sitemap: ^0.3.2
   vitest: ^0.16.0
   vue: ^3.2.45
-  vue-demi: ^0.13.11
   vue-i18n: ^9.2.2
   vue-router: ^4.1.6
   vue-tsc: ^0.38.9
@@ -61,7 +60,6 @@ dependencies:
   nprogress: 0.2.0
   pinia: 2.0.28_prq2uz4lho2pwp6irk4cfkrxwu
   vue: 3.2.45
-  vue-demi: 0.13.11_vue@3.2.45
   vue-i18n: 9.2.2_vue@3.2.45
   vue-router: 4.1.6_vue@3.2.45
 

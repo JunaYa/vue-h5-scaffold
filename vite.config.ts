@@ -1,7 +1,6 @@
 import path from "path";
 import { defineConfig } from "vite";
-// import Vue from "@vitejs/plugin-vue";
-import vue from "@vitejs/plugin-vue2";
+import Vue from "@vitejs/plugin-vue";
 import Pages from "vite-plugin-pages";
 import generateSitemap from "vite-ssg-sitemap";
 import Layouts from "vite-plugin-vue-layouts";
@@ -52,7 +51,7 @@ export default defineConfig({
   },
 
   plugins: [
-    vue(),
+    Vue(),
 
     // https://github.com/hannoeru/vite-plugin-pages
     Pages({
@@ -167,7 +166,7 @@ export default defineConfig({
     include: ["test/unit/**/*.test.ts"],
     environment: "jsdom",
     deps: {
-      inline: ["@vue", "@vueuse", "vue-demi"],
+      inline: ["@vue", "@vueuse"],
     },
   },
 
